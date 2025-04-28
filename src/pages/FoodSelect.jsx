@@ -36,7 +36,7 @@ function FoodSelectPage() {
   };
 
   return (
-    <div className="p-4 flex flex-col items-center justify-center min-h-screen">
+    <div className="p-4 flex flex-col items-center justify-center min-h-screen bg-slate-500/10">
       <h1 className="text-2xl mb-4">เลือกอาหาร</h1>
       <div className="grid grid-cols-2 gap-4 justify-center">
         {foods.map((food, index) => (

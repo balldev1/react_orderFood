@@ -25,7 +25,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen ">
+    <div className="flex justify-center items-center h-screen bg-slate-500/10">
       <form
         onSubmit={handleSubmit}
         className="p-4  bg-white rounded shadow-sm shadow-gray-950 text-black"

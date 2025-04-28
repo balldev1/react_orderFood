@@ -38,7 +38,7 @@ function OrderSummaryPage() {
   const { foods, status } = orders[user];
 
   return (
-    <div className="p-6 flex flex-col items-center justify-center min-h-screen">
+    <div className="p-6 flex flex-col items-center justify-center min-h-screen bg-slate-500/10">
       <div className="text-2xl mb-4">
         สรุปรายการอาหารของ
         <span className="font-bold shadow-sm ml-3 bg-white text-black rounded-md text-md px-2">

@@ -15,7 +15,7 @@ function ConfirmDeliveryPage() {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-slate-500/10">
       <h1 className="text-2xl font-bold mb-4">ยืนยันการส่งอาหาร</h1>
       <div className="space-y-4">
         {orders[user] && orders[user].length > 0 ? (
