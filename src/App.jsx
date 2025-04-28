@@ -35,14 +35,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/confirm"
             element={
               <ProtectedRoute>
-                <ConfirmDeliveryPage /> {/* <-- เพิ่มเส้นทางนี้ */}
+                <ConfirmDeliveryPage />
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </OrderProvider>

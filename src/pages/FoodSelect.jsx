@@ -10,6 +10,7 @@ function FoodSelectPage() {
   const foods = ["หมู", "ไก่", "วัว", "ปลา", "กุ้ง"];
 
   const handleSelect = (food) => {
+    console.log(food);
     setSelectedFoods((prev) => ({
       ...prev,
       [food]: (prev[food] || 0) + 1,
