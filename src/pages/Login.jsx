@@ -16,24 +16,33 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name.trim()) {
-      login(name.trim());
-      navigate("/select");
+    if (!name.trim()) {
+      alert("กรุณากรอกชื่อของคุณก่อนเข้าสู่ระบบ");
+      return;
     }
+    login(name.trim());
+    navigate("/select");
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="p-4 bg-white rounded shadow">
-        <h1 className="text-2xl mb-4">กรอกชื่อผู้สั่ง</h1>
+    <div className="flex justify-center items-center h-screen ">
+      <form
+        onSubmit={handleSubmit}
+        className="p-4  bg-white rounded shadow-sm shadow-gray-950 text-black"
+      >
+        <h1 className="text-2xl mb-4 text-center">ลงชื่อผู้สั่งอาหาร</h1>
+        <img src="/logo.webp" alt="logo" className="h-40 my-5 w-full" />
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="ชื่อของคุณ"
-          className="input input-bordered w-full mb-4"
+          className="input input-bordered w-full mb-4 bg-white shadow-sm shadow-gray-500 focus:outline-none focus:shadow-sm focus:shadow-gray-950 placeholder:text-gray-500"
         />
-        <button type="submit" className="btn btn-primary w-full">
+        <button
+          type="submit"
+          className="btn bg-lime-600 border-none shadow-sm shadow-gray-600 hover:opacity-90 w-full"
+        >
           เข้าสู่ระบบ
         </button>
       </form>

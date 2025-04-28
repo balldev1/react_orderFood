@@ -17,7 +17,7 @@ export function OrderProvider({ children }) {
 
     if (storedUser) setUser(storedUser);
     if (storedOrders) setOrders(storedOrders);
-    setInitialized(true); // <<=== โหลดเสร็จแล้วค่อยเปิด
+    setInitialized(true);
   }, []);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export function OrderProvider({ children }) {
       localStorage.setItem("user", user);
       localStorage.setItem("orders", JSON.stringify(orders));
     }
-  }, [user, orders, initialized]); // <<=== เพิ่ม initialized ใน dependency
+  }, [user, orders, initialized]);
 
   const login = (name) => {
     setUser(name);
@@ -79,7 +79,7 @@ export function OrderProvider({ children }) {
         confirmOrder,
         completeDelivery,
         logout,
-        initialized, // <<=== export ตัวนี้ด้วย เผื่ออยากใช้
+        initialized,
       }}
     >
       {children}

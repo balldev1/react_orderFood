@@ -20,9 +20,15 @@ function OrderSummaryPage() {
   };
 
   const handleReorder = () => {
-    // รีเซ็ต foods และ status ให้เป็นค่าเริ่มต้น
     addFoods({});
     navigate("/select");
+  };
+
+  const handleCancel = () => {
+    if (window.confirm("คุณแน่ใจหรือไม่ว่าต้องการยกเลิกรายการอาหารนี้?")) {
+      addFoods({}); // เคลียร์อาหาร
+      navigate("/select"); // กลับไปเลือกอาหารใหม่
+    }
   };
 
   if (!orders[user]) {
@@ -32,8 +38,13 @@ function OrderSummaryPage() {
   const { foods, status } = orders[user];
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl mb-4">สรุปรายการอาหารของ {user}</h1>
+    <div className="p-6 flex flex-col items-center justify-center min-h-screen">
+      <div className="text-2xl mb-4">
+        สรุปรายการอาหารของ
+        <span className="font-bold shadow-sm ml-3 bg-white text-black rounded-md text-md px-2">
+          {user}
+        </span>
+      </div>
 
       <ul className="mb-4">
         {Object.entries(foods).map(([foodName, quantity]) => (
@@ -44,8 +55,8 @@ function OrderSummaryPage() {
       </ul>
 
       <p className="mb-4">
-        สถานะ:{" "}
-        <span className="font-bold">
+        สถานะคำสั่ง:{" "}
+        <span className="font-bold shadow-sm ml-1 bg-white text-black p-1 rounded-md px-2">
           {status === "waiting"
             ? "รอการยืนยัน"
             : status === "preparing"
@@ -54,39 +65,54 @@ function OrderSummaryPage() {
         </span>
       </p>
 
-      {status === "waiting" && (
+      <div className="flex gap-2 flex-wrap justify-center">
+        {status === "waiting" && (
+          <>
+            <button
+              className="p-2 rounded bg-yellow-400 text-white hover:opacity-90 cursor-pointer"
+              onClick={handleConfirm}
+            >
+              ยืนยันการสั่ง
+            </button>
+            <button
+              className="p-2 rounded bg-gray-500 text-white hover:opacity-90 cursor-pointer"
+              onClick={handleCancel}
+            >
+              ยกเลิกการสั่ง
+            </button>
+          </>
+        )}
+        {status === "preparing" && (
+          <>
+            <button
+              className="p-2 rounded bg-green-500 text-white hover:opacity-90 cursor-pointer"
+              onClick={handleComplete}
+            >
+              ยืนยันส่งสำเร็จ
+            </button>
+            <button
+              className="p-2 rounded bg-gray-500 text-white hover:opacity-90 cursor-poniter"
+              onClick={handleCancel}
+            >
+              ยกเลิกการสั่ง
+            </button>
+          </>
+        )}
+        {status === "completed" && (
+          <button
+            className="p-2 rounded bg-blue-500 text-white hover:opacity-90 cursor-pointer"
+            onClick={handleReorder}
+          >
+            สั่งอาหารเพิ่ม
+          </button>
+        )}
         <button
-          className="btn btn-warning mr-2 p-2 rounded bg-yellow-400 text-white"
-          onClick={handleConfirm}
+          className="p-2 rounded bg-red-500 text-white hover:opacity-90 cursor-pointer"
+          onClick={handleLogout}
         >
-          ยืนยันการสั่ง
+          ออกจากระบบ
         </button>
-      )}
-      {status === "preparing" && (
-        <button
-          className="btn btn-success mr-2 p-2 rounded bg-green-500 text-white"
-          onClick={handleComplete}
-        >
-          ยืนยันส่งสำเร็จ
-        </button>
-      )}
-
-      {/* ปุ่มสำหรับสั่งอาหารเพิ่มเมื่อสถานะเป็น "ส่งสำเร็จแล้ว" */}
-      {status === "completed" && (
-        <button
-          className="btn btn-info p-2 rounded bg-blue-500 text-white mt-4"
-          onClick={handleReorder}
-        >
-          สั่งอาหารเพิ่ม
-        </button>
-      )}
-
-      <button
-        className="btn btn-error p-2 rounded bg-red-500 text-white mt-4"
-        onClick={handleLogout}
-      >
-        ออกจากระบบ
-      </button>
+      </div>
     </div>
   );
 }
